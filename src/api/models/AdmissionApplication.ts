@@ -4,7 +4,7 @@ import {IsNotEmpty, MaxLength} from 'class-validator';
 @Entity('adm_application')
 export class AdmissionApplication {
 
-    @PrimaryGeneratedColumn({
+    @PrimaryGeneratedColumn('increment', {
         name: 'id',
         type: 'smallint',
     })
