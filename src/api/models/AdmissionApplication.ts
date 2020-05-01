@@ -1,17 +1,17 @@
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 import {IsNotEmpty, MaxLength} from 'class-validator';
+import {Address} from './Address';
 
 @Entity('adm_application')
 export class AdmissionApplication {
 
     @PrimaryGeneratedColumn('increment', {
-        name: 'id',
         type: 'smallint',
+        unsigned: true,
     })
     public id: number;
 
     @Column({
-        name: 'applicant_id',
         type: 'varchar',
         length: 36,
         nullable: false,
@@ -20,7 +20,6 @@ export class AdmissionApplication {
 
     @MaxLength(5)
     @Column({
-        name: 'title',
         type: 'char',
         length: 5,
         nullable: true,
@@ -30,7 +29,6 @@ export class AdmissionApplication {
     @IsNotEmpty()
     @MaxLength(35)
     @Column({
-        name: 'given_name',
         type: 'varchar',
         length: 35,
         nullable: false,
@@ -39,7 +37,6 @@ export class AdmissionApplication {
 
     @MaxLength(35)
     @Column({
-        name: 'middle_name',
         type: 'varchar',
         length: 35,
         nullable: true,
@@ -49,7 +46,6 @@ export class AdmissionApplication {
     @IsNotEmpty()
     @MaxLength(35)
     @Column({
-        name: 'family_name',
         type: 'varchar',
         length: 35,
         nullable: false,
@@ -58,14 +54,12 @@ export class AdmissionApplication {
 
     @IsNotEmpty()
     @Column({
-        name: 'birthday',
         type: 'datetime',
     })
     public birthday: Date;
 
     @MaxLength(45)
     @Column({
-        name: 'place_of_birth',
         type: 'varchar',
         length: 45,
         nullable: true,
@@ -74,7 +68,6 @@ export class AdmissionApplication {
 
     @MaxLength(10)
     @Column({
-        name: 'civil_status',
         type: 'char',
         length: 10,
         nullable: true,
@@ -83,7 +76,6 @@ export class AdmissionApplication {
 
     @MaxLength(15)
     @Column({
-        name: 'nationality',
         type: 'varchar',
         length: 15,
         nullable: false,
@@ -93,7 +85,6 @@ export class AdmissionApplication {
     @IsNotEmpty()
     @MaxLength(1)
     @Column({
-        name: 'gender',
         type: 'char',
         length: 1,
         nullable: false,
@@ -102,27 +93,24 @@ export class AdmissionApplication {
 
     @MaxLength(45)
     @Column({
-        name: 'religion',
         type: 'varchar',
         length: 45,
         nullable: true,
     })
     public religion: string;
 
-    @CreateDateColumn({
-        name: 'created_at',
-    })
+    @CreateDateColumn()
     public createdAt: Date;
 
-    @UpdateDateColumn({
-        name: 'updated_at',
-    })
+    @UpdateDateColumn()
     public updatedAt: Date;
 
     @Column({
-        name: 'certified',
         type: 'bool',
         nullable: false,
     })
     public certified: boolean;
+
+    @OneToMany(type => Address, address => address.application)
+    public address: Address[];
 }
