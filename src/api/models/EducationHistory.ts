@@ -9,7 +9,7 @@ export class EducationHistory {
 
     @PrimaryGeneratedColumn('increment', {
         type: 'smallint',
-        unsigned: true
+        unsigned: true,
     })
     public id: number;
 
@@ -71,6 +71,8 @@ export class EducationHistory {
     @JoinColumn({ name: 'levelDescriptionCd', referencedColumnName: 'cd' })
     public levelDescription: LevelDescription;
 
-    @OneToMany(type => EducationHistoryDocument, educationHistoryDocument => educationHistoryDocument.educationHistory, { cascade: ['insert', 'update'], eager: true })
+    @OneToMany(type => EducationHistoryDocument,
+        educationHistoryDocument => educationHistoryDocument.educationHistory,
+        { cascade: ['insert', 'update'], eager: true })
     public educationHistoryDocument: EducationHistoryDocument[];
 }

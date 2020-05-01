@@ -23,7 +23,7 @@ export class AdmissionApplicationService {
     public findByApplicant(applicantId: string): Promise<AdmissionApplication | undefined> {
         this.log.info('Find Application for ' + applicantId);
 
-        return this.repository.findOne({ where: { applicantId }, relations: ["address"]});
+        return this.repository.findOne({ where: { applicantId }, relations: ['address']});
     }
 
     public async create(application: AdmissionApplication): Promise<AdmissionApplication> {

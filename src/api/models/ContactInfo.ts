@@ -15,7 +15,7 @@ export class ContactInfo {
 
     @PrimaryGeneratedColumn('increment', {
         type: 'smallint',
-        unsigned: true
+        unsigned: true,
     })
     public id: number;
 

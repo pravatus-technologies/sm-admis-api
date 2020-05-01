@@ -7,7 +7,7 @@ export class Address {
 
     @PrimaryGeneratedColumn('increment', {
         type: 'smallint',
-        unsigned: true
+        unsigned: true,
     })
     public id: number;
 
