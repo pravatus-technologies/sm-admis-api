@@ -1,17 +1,17 @@
 import * as express from 'express';
 import { Service } from 'typedi';
-import { OrmRepository } from 'typeorm-typedi-extensions';
+// import { OrmRepository } from 'typeorm-typedi-extensions';
 
-import { User } from '../api/models/User';
-import { UserRepository } from '../api/repositories/UserRepository';
+// import { User } from '../api/models/User';
+// import { UserRepository } from '../api/repositories/UserRepository';
 import { Logger, LoggerInterface } from '../decorators/Logger';
 
 @Service()
 export class AuthService {
 
     constructor(
-        @Logger(__filename) private log: LoggerInterface,
-        @OrmRepository() private userRepository: UserRepository
+        @Logger(__filename) private log: LoggerInterface
+        // @OrmRepository() private userRepository: UserRepository
     ) { }
 
     public parseBasicAuthFromRequest(req: express.Request): { username: string, password: string } {
@@ -31,16 +31,17 @@ export class AuthService {
         return undefined;
     }
 
-    public async validateUser(username: string, password: string): Promise<User> {
-        const user = await this.userRepository.findOne({
-            where: {
-                username,
-            },
-        });
-
-        if (await User.comparePassword(user, password)) {
-            return user;
-        }
+    public async validateUser(username: string, password: string): Promise<any> {
+    // public async validateUser(username: string, password: string): Promise<User> {
+        // const user = await this.userRepository.findOne({
+        //     where: {
+        //         username,
+        //     },
+        // });
+        //
+        // if (await User.comparePassword(user, password)) {
+        //     return user;
+        // }
 
         return undefined;
     }

@@ -1,46 +1,18 @@
 import { validate } from 'class-validator';
+import { AdmissionApplication } from '../../../src/api/models/AdmissionApplication';
 
-import { User } from '../../../src/api/models/User';
+describe('AdmisAppValidations', () => {
+   test('User should always have a given name', async (done) => {
+       const admissionApplication = new AdmissionApplication();
 
-describe('UserValidations', () => {
+       // gather all validation errors
+       const errorsOne = await validate(admissionApplication);
+       // after setting a name errors two should be 1 less error
+       admissionApplication.givenName = 'Test';
 
-    test('User should always have a first name', async (done) => {
-        const user = new User();
-        const errorsOne = await validate(user);
-        user.firstName = 'TestName';
-        const errorsTwo = await validate(user);
-        expect(errorsOne.length).toBeGreaterThan(errorsTwo.length);
-        done();
-    });
-
-    test('User should always have a last name', async (done) => {
-        const user = new User();
-        const errorsOne = await validate(user);
-        user.lastName = 'TestName';
-        const errorsTwo = await validate(user);
-        expect(errorsOne.length).toBeGreaterThan(errorsTwo.length);
-        done();
-    });
-
-    test('User should always have a email', async (done) => {
-        const user = new User();
-        const errorsOne = await validate(user);
-        user.email = 'test@test.com';
-        const errorsTwo = await validate(user);
-        expect(errorsOne.length).toBeGreaterThan(errorsTwo.length);
-        done();
-    });
-
-    test('User validation should succeed with all required fields', async (done) => {
-        const user = new User();
-        user.firstName = 'TestName';
-        user.lastName = 'TestName';
-        user.email = 'test@test.com';
-        user.username = 'test';
-        user.password = '1234';
-        const errors = await validate(user);
-        expect(errors.length).toEqual(0);
-        done();
-    });
-
+       // errors two should be less because we set a value to givenName
+       const errorsTwo = await validate(admissionApplication);
+       expect(errorsOne.length).toBeGreaterThan(errorsTwo.length);
+       done();
+   });
 });

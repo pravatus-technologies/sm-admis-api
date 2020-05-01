@@ -1,3 +1,4 @@
+// @ts-ignore
 import { setConnection } from 'typeorm-seeding';
 
 import { migrateDatabase } from '../../utils/database';

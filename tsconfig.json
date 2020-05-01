@@ -17,6 +17,9 @@
         "noFallthroughCasesInSwitch": true,
         "moduleResolution": "node",
         "baseUrl": ".",
+        "paths": {
+            "@sm-models": ["src/api/models"]
+        },
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,

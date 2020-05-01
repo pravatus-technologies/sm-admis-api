@@ -1,4 +1,5 @@
-# @w3tec
+# Environment settings
+.env
 
 # Logs #
 /logs
