@@ -1,6 +1,7 @@
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 import {IsNotEmpty, MaxLength} from 'class-validator';
 import {Address} from './Address';
+import {ContactInfo} from './ContactInfo';
 
 @Entity('adm_application')
 export class AdmissionApplication {
@@ -112,6 +113,9 @@ export class AdmissionApplication {
     })
     public certified: boolean;
 
-    @OneToMany(type => Address, address => address.application, { cascade: ['insert'] })
+    @OneToMany(type => Address, address => address.application, { cascade: ['insert', 'update'], eager: true })
     public address: Address[];
+
+    @OneToMany(type => ContactInfo, contactInfo => contactInfo.application, { cascade: ['insert', 'update'], eager: true })
+    public contactInfo: ContactInfo[];
 }

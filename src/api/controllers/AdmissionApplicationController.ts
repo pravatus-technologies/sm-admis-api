@@ -5,6 +5,7 @@ import {IsUUID} from 'class-validator';
 import {AdmissionApplication} from '../models/AdmissionApplication';
 import {ApplicationNotFoundError} from '../errors/ApplicationNotFoundError';
 import {Address} from '../models/Address';
+import {ContactInfo} from '../models/ContactInfo';
 
 export class AdmissionApplicationResponse {
     public id: number;
@@ -24,6 +25,7 @@ export class AdmissionApplicationResponse {
     public religion: string;
     public certified: boolean;
     public address: Address[];
+    public contactInfo: ContactInfo[];
 }
 
 @JsonController('/application')

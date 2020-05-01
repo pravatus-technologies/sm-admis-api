@@ -1,5 +1,5 @@
 import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-import {IsNotEmpty} from 'class-validator';
+import {IsNotEmpty, MaxLength} from 'class-validator';
 import {AdmissionApplication} from './AdmissionApplication';
 
 @Entity('address')
@@ -41,12 +41,13 @@ export class Address {
     })
     public municipality: string;
 
+    @MaxLength(10)
     @Column({
         type: 'varchar',
         length: 10,
         nullable: false,
     })
-    public zipCode: number;
+    public zipCode: string;
 
     @IsNotEmpty()
     @Column({
