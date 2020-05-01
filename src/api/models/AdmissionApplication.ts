@@ -15,6 +15,7 @@ export class AdmissionApplication {
         type: 'varchar',
         length: 36,
         nullable: false,
+        unique: true,
     })
     public applicantId: string;
 
@@ -111,6 +112,6 @@ export class AdmissionApplication {
     })
     public certified: boolean;
 
-    @OneToMany(type => Address, address => address.application)
+    @OneToMany(type => Address, address => address.application, { cascade: ['insert'] })
     public address: Address[];
 }

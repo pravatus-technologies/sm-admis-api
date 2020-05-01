@@ -59,17 +59,19 @@ export class Address {
     @Column({
         name: 'primary',
         type: 'boolean',
+        default: false,
     })
     public isPrimary: boolean;
 
     @Column({
         name: 'mailing',
         type: 'boolean',
+        default: false,
     })
     public isMailing: boolean;
 
     @ManyToOne(type => AdmissionApplication, application => application.address,
-        { cascade: true, onDelete: 'CASCADE', lazy: true })
+        { onDelete: 'CASCADE' })
     @JoinColumn()
     public application: AdmissionApplication;
 }

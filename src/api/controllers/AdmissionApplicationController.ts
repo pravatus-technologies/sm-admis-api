@@ -4,6 +4,7 @@ import {ResponseSchema} from 'routing-controllers-openapi';
 import {IsUUID} from 'class-validator';
 import {AdmissionApplication} from '../models/AdmissionApplication';
 import {ApplicationNotFoundError} from '../errors/ApplicationNotFoundError';
+import {Address} from '../models/Address';
 
 export class AdmissionApplicationResponse {
     public id: number;
@@ -22,6 +23,7 @@ export class AdmissionApplicationResponse {
     public gender: string;
     public religion: string;
     public certified: boolean;
+    public address: Address[];
 }
 
 @JsonController('/application')
