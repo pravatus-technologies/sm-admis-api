@@ -2,6 +2,7 @@ import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Upd
 import {IsNotEmpty, MaxLength} from 'class-validator';
 import {Address} from './Address';
 import {ContactInfo} from './ContactInfo';
+import {EducationHistory} from './EducationHistory';
 
 @Entity('adm_application')
 export class AdmissionApplication {
@@ -118,4 +119,7 @@ export class AdmissionApplication {
 
     @OneToMany(type => ContactInfo, contactInfo => contactInfo.application, { cascade: ['insert', 'update'], eager: true })
     public contactInfo: ContactInfo[];
+
+    @OneToMany(type => EducationHistory, educationHistory => educationHistory.application, { cascade: ['insert', 'update'], eager: true })
+    public educationHistory: EducationHistory[];
 }

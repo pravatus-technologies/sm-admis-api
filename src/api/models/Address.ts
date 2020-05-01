@@ -58,14 +58,12 @@ export class Address {
     public province: string;
 
     @Column({
-        name: 'primary',
         type: 'boolean',
         default: false,
     })
     public isPrimary: boolean;
 
     @Column({
-        name: 'mailing',
         type: 'boolean',
         default: false,
     })
