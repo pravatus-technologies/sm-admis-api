@@ -39,7 +39,7 @@ export class ContactInfo {
     @UpdateDateColumn()
     public updatedAt: Date;
 
-    @ManyToOne(type => AdmissionApplication, application => application.contactInfo)
+    @ManyToOne(type => AdmissionApplication, application => application.contactInfo, { onDelete: 'CASCADE' })
     @JoinColumn()
     public application: AdmissionApplication;
 
