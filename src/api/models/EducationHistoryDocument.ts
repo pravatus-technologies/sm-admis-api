@@ -17,7 +17,7 @@ export class EducationHistoryDocument {
     public educationHistoryId: number;
 
     @Column({
-        type: 'text',
+        type: 'longtext',
     })
     public document: string;
 

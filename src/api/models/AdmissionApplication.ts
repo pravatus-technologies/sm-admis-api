@@ -1,8 +1,10 @@
-import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 import {IsNotEmpty, MaxLength} from 'class-validator';
 import {Address} from './Address';
 import {ContactInfo} from './ContactInfo';
 import {EducationHistory} from './EducationHistory';
+import {FinancialBackground} from './FinancialBackground';
+import {FamilyBackground} from './FamilyBackground';
 
 @Entity('adm_application')
 export class AdmissionApplication {
@@ -114,12 +116,23 @@ export class AdmissionApplication {
     })
     public certified: boolean;
 
-    @OneToMany(type => Address, address => address.application, { cascade: ['insert', 'update'], eager: true })
+    @OneToMany(type => Address, address => address.application,
+        { cascade: ['insert', 'update'], eager: true })
     public address: Address[];
 
-    @OneToMany(type => ContactInfo, contactInfo => contactInfo.application, { cascade: ['insert', 'update'], eager: true })
+    @OneToMany(type => ContactInfo, contactInfo => contactInfo.application,
+        { cascade: ['insert', 'update'], eager: true })
     public contactInfo: ContactInfo[];
 
-    @OneToMany(type => EducationHistory, educationHistory => educationHistory.application, { cascade: ['insert', 'update'], eager: true })
+    @OneToMany(type => EducationHistory, educationHistory => educationHistory.application,
+        { cascade: ['insert', 'update'], eager: true })
     public educationHistory: EducationHistory[];
+
+    @OneToOne(type => FinancialBackground, financialBackground => financialBackground.application,
+        { cascade: ['insert', 'update'], eager: true })
+    public financialBackground: FinancialBackground;
+
+    @OneToMany(type => FamilyBackground, familyBackground => familyBackground.application,
+        { cascade: ['insert', 'update'], eager: true })
+    public familyBackground: FamilyBackground[];
 }
